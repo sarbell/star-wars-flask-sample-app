@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row py-5">
+        <div class="col p-3 text-center">
+            <h1 style="font-weight: 900" class="text-warning text-uppercase display-1">Star Wars DB</h1>
+            <h2 style="font-weight: 300" class="text-light py-2">See every movie, series, and game create in the star wars world!<br> All in one place!</h2>
+            <small class="text-muted">I mean, some of it.. at least all the movies. :)</small>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col">
+            <div class="input-group mb-3">
+              <input type="search" class="form-control" placeholder="Star wars title..." aria-label="star wars search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-warning input-group-text" id="basic-addon2">Search</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-5">
+        {% for movie in movies %}
+        <div class="col-4 my-3">
+            <div class="card border-0 rounded-0">
+                <a href="{{url_for('feature_movies', id=movie.id)}}"><img class="card-img-top rounded-0" src="../static/images/db_images/{{movie.poster}}" alt="Card image cap"></a>
+                <h5 class="card-title text-center my-auto p-1 m-0">{{movie.title}}</h5>
+            </div>
+        </div>
+        {% endfor %}
+        {% for serie in series %}
+        <div class="col-4 my-3">
+            <div class="card border-0 rounded-0">
+                <a href="{{url_for('feature_series', id=serie.id)}}"><img class="card-img-top rounded-0" src="../static/images/db_images/{{serie.poster}}" alt="Card image cap"></a>
+                <h5 class="card-title text-center my-auto p-1 m-0">{{serie.series_title}}</h5>
+            </div>
+        </div>
+        {% endfor %}
+        {% for game in games %}
+        <div class="col-4 my-3">
+            <div class="card border-0 rounded-0">
+                <a href="{{url_for('feature_games', id=game.id)}}"><img class="card-img-top rounded-0" src="../static/images/db_images/{{game.poster}}" alt="Card image cap"></a>
+                <h5 class="card-title text-center my-auto p-1 m-0">{{game.title}}</h5>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

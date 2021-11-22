@@ -1,0 +1,42 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row pt-3">
+        <div class="col my-auto">
+            <h1 class="display-2 text-dark">Series</h1>
+        </div>
+    </div>
+        <div class="row py-1">
+        <div class="col text-left">
+            <a class="text-dark" href="{{url_for('create_series')}}"><i class="mr-2 text-primary fas fa-plus-circle"></i>Add Series</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row py-5">
+        <div class="col">
+            <table class="table table-striped">
+              <tbody>
+                 {% for serie in series %}
+                <tr>
+                  <td scope="col-8">
+                      <h5 class="text-dark"style="font-weight: 600">{{ serie.series_title | title}}  <span style="font-weight: 300" class="text-info">{{ serie.year_made | title}} </span> - <span style="font-weight: 300" class="text-info">{{ serie.last_year_made | title}} </span></h5>
+                      <h6 class="text-dark" style="font-weight: 600">{{ serie.series_episode_title | title}}</h6>
+                      <p>{{ serie.synopsis | title}} </p>
+                      <p class="text-muted">{{ serie.category.type | title}}</p>
+                      <a href="{{url_for('edit_series', id=serie.id)}}" class="btn btn-sm btn-success"><i class="mr-2 fas fa-pencil-alt"></i>Edit</a>
+                      <a  href="{{url_for('delete_series', id=serie.id)}}" class="btn btn-sm btn-danger"><i class="mr-2 fas fa-minus-circle"></i>Delete</a>
+                  </td>
+                    <td scope="col-4">
+                        <img src="../static/images/db_images/{{serie.poster}}" width="200px" alt="">
+                    </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

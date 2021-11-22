@@ -1,0 +1,57 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row py-3">
+        <div class="col">
+            <h3>Enter Movie Information</h3>
+             <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST" enctype=multipart/form-data>
+
+                  <div class="form-group">
+                    <label for="title">Title of Movie</label>
+                    <input value="{{ title | default('')}}" type="text" name="title" class="form-control" id="title" placeholder="Star wars...">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="year_made">Year movie was released</label>
+                    <input value="{{ year_made | default('')}}" type="number" name="year_made" class="form-control" id="year_made" placeholder="2020">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="synopsis">Synopsis</label>
+                      <textarea name="synopsis" class="form-control" id="synopsis" placeholder="this is the summary...">{{ synopsis|default('')}}</textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="category_id">Select a category</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                    {% for category in categories %}
+                      <option value="{{ category.id }}" {{'selected' if category.type == category_type}}>{{category.type}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="trilogy_id">Select a trilogy or none if not applicable</label>
+                    <select class="form-control" name="trilogy_id" id="trilogy_id">
+                    {% for trilogy in trilogies %}
+                      <option value="{{ trilogy.id }}" {{ 'selected' if trilogy.type == trilogy_type }}>{{trilogy.type}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                
+                <div class="form-group">
+                    <label for="poster">Add image name</label>
+                    <input value="{{ poster | default('')}}" type="text" name="poster" class="form-control" id="poster" placeholder="image name">
+                  </div>
+
+              <button class="btn btn-outline-info" type="submit" value="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

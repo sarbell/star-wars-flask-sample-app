@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if movie.title %}
+<div class="container">
+    <div class="row py-5">
+        <div class="col p-3 text-center">
+            <h3 style="font-weight: 500" class="text-warning text-uppercase display-4">{{movie.title}}</h3>
+        </div>
+    </div>
+    <div class="row py-5">
+        <div class="col-4 my-3 my-auto">
+            <img src="/static/images/db_images/{{movie.poster}}"  width="100%" alt="">
+        </div>
+        <div class="col-8 my-auto">
+            <h6 class="text-light">Year Released: {{movie.year_made}}</h6>
+            <h6 class="text-light">Trilogy: {{movie.trilogy.type}}</h6>
+            <hr class="bg-warning">
+            <p class="text-light">{{movie.synopsis}}</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row pt-3">
+        <div class="col my-auto">
+            <h1 class="display-2 text-dark">Categories</h1>
+        </div>
+    </div>
+    <div class="row py-5">
+        <div class="col">
+            <table class="table table-striped">
+              <tbody>
+                 {% for category in categories %}
+                <tr>
+                  <td scope="col">{{ category.type | title}}</td>
+                  <td class="text-right" scope="col"><a href="{{url_for('edit_category', id=category.id)}}" class="btn btn-sm btn-success"><i class="mr-2 fas fa-pencil-alt"></i>Edit</a></td>
+                  <td class="text-left" scope="col"><a  href="{{url_for('delete_category', id=category.id)}}" class="btn btn-sm btn-danger"><i class="mr-2 fas fa-minus-circle"></i>Delete</a></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row py-3">
+        <div class="col text-center">
+            <a class="text-dark" href="{{url_for('create_category')}}"><i class="mr-2 text-primary fas fa-plus-circle"></i>Add Category</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

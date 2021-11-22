@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row py-5">
+        <div class="col p-3 text-center">
+            <h1 style="font-weight: 100" class="text-warning text-uppercase display-1">Series</h1>
+        </div>
+    </div>
+    {% for serie in series %}
+    <div class="row py-5">
+        <div class="col-4 my-3">
+            <img src="../static/images/db_images/{{serie.poster}}"  width="100%" alt="">
+        </div>
+        <div class="col-8">
+            <h3 class="text-warning display-4">{{serie.series_title}}</h3>
+            <h3 class="text-white">{{serie.series_episode_title}}</h3>
+            <h6 class="text-light">Years Running: {{serie.year_made}} - {{serie.last_year_made}}</h6>
+            <hr class="bg-warning">
+            <p class="text-light">{{serie.synopsis}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

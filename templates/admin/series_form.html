@@ -1,0 +1,56 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row py-3">
+        <div class="col">
+            <h3>Enter Series Information</h3>
+             <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST" enctype=multipart/form-data>
+
+                  <div class="form-group">
+                    <label for="series_title">Title of Series</label>
+                    <input value="{{ series_title | default('')}}" type="text" name="series_title" class="form-control" id="series_title" placeholder="series...">
+                  </div>
+                  <div class="form-group">
+                    <label for="series_episode_title">Title of episode</label>
+                    <input value="{{ series_episode_title | default('')}}" type="text" name="series_episode_title" class="form-control" id="series_episode_title" placeholder="series episdoe...">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="year_made">Year movie was released</label>
+                    <input value="{{ year_made | default('')}}" type="number" name="year_made" class="form-control" id="year_made" placeholder="2020">
+                  </div>
+                  <div class="form-group">
+                    <label for="last_year_made">Year movie was released</label>
+                    <input value="{{ last_year_made | default('')}}" type="number" name="last_year_made" class="form-control" id="last_year_made" placeholder="2020">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="synopsis">Synopsis</label>
+                      <textarea name="synopsis" class="form-control" id="synopsis" placeholder="this is the summary...">{{ synopsis|default('')}}</textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="category_id">Select a category</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                    {% for category in categories %}
+                      <option value="{{ category.id }}" {{'selected' if category.type == category_type}}>{{category.type}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+
+                <div class="form-group">
+                    <label for="poster">Add image name</label>
+                    <input value="{{ poster | default('')}}" type="text" name="poster" class="form-control" id="poster" placeholder="image name">
+                  </div>
+
+              <button class="btn btn-outline-info" type="submit" value="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
